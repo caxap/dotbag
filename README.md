@@ -9,3 +9,7 @@ Configuration pack that I use for my development environment (mostly for git, vi
     git clone git://github.com/caxap/dotbag.git .dotbag
     cd .dotbag
     ./configure
+
+To install some additional python libs 
+
+    sudo pip install -r requirements.txt
