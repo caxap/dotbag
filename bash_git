@@ -1,0 +1,5 @@
+
+PS1="\u@\h:\w\007(\[\033[1;32m\]\$(git branch 2> /dev/null | fgrep '*' | sed 's/* //')\[\033[0m\])$ "
+PS2='> '
+PS4='+ '
+PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
