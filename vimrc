@@ -1,39 +1,63 @@
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
-" runtime! debian.vim
 
-set hidden
-set number
-set showcmd
-set title
-set ttyfast
-set modeline
-set modelines=3
-set nostartofline
-set ruler 
-"set foldmethod=indent
+" Highlight current line
+"au WinLeave * set nocursorline nocursorcolumn
+"au WinEnter * set cursorline cursorcolumn
+"set cursorline cursorcolumn
+
+
+" Search operations
 set incsearch
 set nohlsearch
-set visualbell t_vb=
-set novisualbell
-set laststatus=2
-set scrolljump=0
-set scrolloff=0
-set mousemodel=popup
-set ch=1
-set mousehide
+"set highlight
+set ignorecase
+set smartcase
+
+
+" Editor settings
+set nocompatible
+set nofoldenable                                                  " disable folding"
+"set foldmethod=indent
+set confirm                                                       " prompt when existing from an unsaved file
+set history=1000
+set backspace=indent,eol,start                                    " More powerful backspacing
 set autoindent
 set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set ts=4
+set tw=0
 "set softtabstop=4
 "set smarttab
-set backspace=indent,eol,start
-set tw=0
-set background=dark
 set pastetoggle=<F2>
+set nostartofline
+set ttyfast
+
+
+" Display settings
+set background=dark
+set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
+"set mouse=a                                                      " use mouse in all modes
+set mousemodel=popup
+set mousehide
+set report=0                                                      " always report number of lines changed                "
+set nowrap                                                        " dont wrap lines
+set ch=1
+set scrolljump=0
+set scrolloff=0                                                   " no lines above/below cursor when scrolling
+set number                                                        " show line numbers
+set showmatch                                                     " show matching bracket (briefly jump)
+set showcmd                                                       " show typed command in status bar
+set title                                                         " show file in titlebar
+set laststatus=2                                                  " use 2 lines for the status bar
+set matchtime=2                                                   " show matching bracket for 0.2 seconds
+set matchpairs+=<:>                                               " specially for html
+set modeline
+set modelines=3
+set visualbell t_vb=
+set novisualbell
+set ruler
+set hidden
 
 
 " Backup and swap files
@@ -45,17 +69,27 @@ set directory=~/.vimbackup,.
 
 
 " Pathogeh manager (should go before `syntax`)
-call pathogen#infect()
-filetype plugin indent on
+"call pathogen#infect()
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
-if has("syntax")
-    syntax on
-endif
+filetype plugin indent on
+syntax on
+syntax enable
 
 
 " Statusbar format
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%03.3b/%08O:%02.2B]
+
+
+" When editing a file, always jump to the last cursor position
+autocmd BufReadPost *
+    \ if ! exists("g:leave_my_cursor_position_alone") |
+    \     if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \         exe "normal g'\"" |
+    \     endif |
+    \ endif
 
 
 " Header for python file
@@ -84,3 +118,7 @@ autocmd BufWritePre *.py,*.js,*.html,*.less,*.css :%s/\s\+$//e
 " Ignore line width for syntax checking
 let g:syntastic_python_checker_args='--ignore=E501'
 
+
+" Tagbar plugin configuration
+let g:tagbar_usearrows = 1
+nnoremap <F3> :TagbarToggle<CR>
