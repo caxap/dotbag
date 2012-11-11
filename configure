@@ -1,0 +1,37 @@
+#!/bin/bash
+
+export DOTBAG_DIR="${HOME}/.dotbag"
+DOTBAG_LOCK="${DOTBAG_DIR}/.dotbag_lock"
+
+function configure()
+{
+    echo "Configuring..."
+
+    if [ -f ${DOTBAG_LOCK} ];
+    then
+        echo "Lock file \"${DOTBAG_LOCK}\" already exists. Aborting!"
+        return 1
+    fi
+
+    touch ${DOTBAG_LOCK}
+
+    git submodule update --init --recursive
+
+    touch ${HOME}/.bashrc
+    echo source ${DOTBAG_DIR}/bashrc >> ${HOME}/.bashrc
+
+    ln -s ${DOTBAG_DIR}/gitconfig ${HOME}/.gitconfig
+    ln -s ${DOTBAG_DIR}/bash_git ${HOME}/.bash_git
+    ln -s ${DOTBAG_DIR}/vimrc ${HOME}/.vimrc
+
+    # check existence to avoid cyclic links
+    if [ ! -e ${HOME}/.vim ];
+    then
+        ln -s ${DOTBAG_DIR}/vim ${HOME}/.vim
+    fi
+
+    echo "Well done!"
+    return 0
+}
+
+configure
