@@ -1,4 +1,4 @@
 [submodule "vim/bundle/syntastic"]
-    path = vim/bundle/syntastic
-    url = https://github.com/scrooloose/syntastic.git
+	path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
     ignore = untracked
