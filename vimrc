@@ -69,8 +69,8 @@ set hidden
 set backup
 "set nowritebackup
 "set swapfile
-set backupdir=~/.vimbackup,.
-set directory=~/.vimbackup,.
+set backupdir=~/.vim/backup,.
+set directory=~/.vim/backup,.
 
 
 " Pathogeh manager (should go before `syntax`)

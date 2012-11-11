@@ -29,6 +29,7 @@ function configure()
     then
         ln -s ${DOTBAG_DIR}/vim ${HOME}/.vim
     fi
+    mkdir ${DOTBAG_DIR}/vim/backup
 
     echo "Well done!"
     return 0
