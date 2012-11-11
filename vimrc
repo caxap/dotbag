@@ -1,8 +1,13 @@
 
 " Highlight current line
-"au WinLeave * set nocursorline nocursorcolumn
-"au WinEnter * set cursorline cursorcolumn
-"set cursorline cursorcolumn
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline
+"set cursorcolumn
+
+
+" Theme settings
+color jellybeans
 
 
 " Search operations
@@ -74,8 +79,10 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 filetype plugin indent on
-syntax on
 syntax enable
+" Required some magic to get vim-less to work
+filetype off
+filetype on
 
 
 " Statusbar format
@@ -115,10 +122,17 @@ autocmd BufWritePre *.py,*.js,*.html,*.less,*.css :%s/\s\+$//e
 "imap { {}<LEFT>
 
 
+" Syntastic bundle settings
 " Ignore line width for syntax checking
 let g:syntastic_python_checker_args='--ignore=E501'
 
 
-" Tagbar plugin configuration
+" Tagbar bundle settings
 let g:tagbar_usearrows = 1
 nnoremap <F3> :TagbarToggle<CR>
+
+
+" Vim-javascript bundle settings
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
