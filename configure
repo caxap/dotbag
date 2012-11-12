@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# Usage:
+# [DOTBAG_LOCK_FORCE=1] ./configure
+#
+# DOTBAG_LOCK_FORCE if set dotbag lock file will be ignored.
+#
 
 export DOTBAG_DIR="${HOME}/.dotbag"
 DOTBAG_LOCK="${DOTBAG_DIR}/.dotbag_lock"
@@ -7,29 +13,29 @@ function configure()
 {
     echo "Configuring..."
 
-    if [ -f ${DOTBAG_LOCK} ];
-    then
-        echo "Lock file \"${DOTBAG_LOCK}\" already exists. Aborting!"
-        return 1
-    fi
-
-    touch ${DOTBAG_LOCK}
-
     git submodule update --init --recursive
 
-    touch ${HOME}/.bashrc
-    echo source ${DOTBAG_DIR}/bashrc >> ${HOME}/.bashrc
-
-    ln -s ${DOTBAG_DIR}/gitconfig ${HOME}/.gitconfig
-    ln -s ${DOTBAG_DIR}/bash_git ${HOME}/.bash_git
-    ln -s ${DOTBAG_DIR}/vimrc ${HOME}/.vimrc
-
-    # check existence to avoid cyclic links
-    if [ ! -e ${HOME}/.vim ];
+    # protect sensetive operations
+    if [ ! -f ${DOTBAG_LOCK} -o -n "${DOTBAG_LOCK_FORCE}" ];
     then
-        ln -s ${DOTBAG_DIR}/vim ${HOME}/.vim
+        touch ${DOTBAG_LOCK}
+        touch ${HOME}/.bashrc
+        echo source ${DOTBAG_DIR}/bashrc >> ${HOME}/.bashrc
+
+        ln -s ${DOTBAG_DIR}/gitconfig ${HOME}/.gitconfig
+        ln -s ${DOTBAG_DIR}/bash_git ${HOME}/.bash_git
+        ln -s ${DOTBAG_DIR}/vimrc ${HOME}/.vimrc
+
+        # check existence to avoid cyclic links
+        if [ ! -e ${HOME}/.vim ];
+        then
+            ln -s ${DOTBAG_DIR}/vim ${HOME}/.vim
+        fi
+        mkdir ${DOTBAG_DIR}/vim/backup
+    else
+        echo "Found lock file \"${DOTBAG_LOCK}\"."
+        return 1
     fi
-    mkdir ${DOTBAG_DIR}/vim/backup
 
     echo "Well done!"
     return 0
