@@ -129,10 +129,13 @@ let g:syntastic_python_checker_args='--ignore=E501'
 
 " Tagbar bundle settings
 let g:tagbar_usearrows = 1
-nnoremap <F3> :TagbarToggle<CR>
+nnoremap <F4> :TagbarToggle<CR>
 
 
 " Vim-javascript bundle settings
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+
+" NERDTree bundle settings
+nnoremap <F3> :NERDTreeToggle<CR>
