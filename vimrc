@@ -1,13 +1,13 @@
 
 " Highlight current line
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
-set cursorline
-"set cursorcolumn
+au WinLeave * set nocursorline "nocursorcolumn
+au WinEnter * set cursorline "cursorcolumn
+set cursorline "cursorcolumn
 
 
 " Theme settings
 color jellybeans
+let g:jellybeans_background_color_256 = 232
 
 
 " Search operations
