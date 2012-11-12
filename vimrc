@@ -23,7 +23,7 @@ set nocompatible
 set nofoldenable                                                  " disable folding"
 "set foldmethod=indent
 set confirm                                                       " prompt when existing from an unsaved file
-set history=1000
+set history=500
 set backspace=indent,eol,start                                    " More powerful backspacing
 set autoindent
 set smartindent
@@ -55,7 +55,7 @@ set showmatch                                                     " show matchin
 set showcmd                                                       " show typed command in status bar
 set title                                                         " show file in titlebar
 set laststatus=2                                                  " use 2 lines for the status bar
-set matchtime=2                                                   " show matching bracket for 0.2 seconds
+"set matchtime=2                                                   " show matching bracket for 0.2 seconds
 set matchpairs+=<:>                                               " specially for html
 set modeline
 set modelines=3
