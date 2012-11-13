@@ -90,6 +90,13 @@ filetype on
 set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%03.3b/%08O:%02.2B]
 
 
+" Easy navigation for windows ()
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
     \ if ! exists("g:leave_my_cursor_position_alone") |
@@ -106,14 +113,23 @@ function! BufNewFile_PY()
 normal G
 endfunction
 
-
 " Bind header by python ext
 autocmd BufNewFile *.py call BufNewFile_PY()
 autocmd BufNewFile *.pyw call BufNewFile_PY()
 
 
-" Removing all trailing whitespace
-autocmd BufWritePre *.py,*.js,*.html,*.less,*.css :%s/\s\+$//e
+" Remove all trailing whitespace
+function! StripTrailingWhitespace()
+  normal mZ
+  %s/\s\+$//e
+  if line("'Z") != line(".")
+    echo "Stripped whitespace\n"
+  endif
+  normal `Z
+endfunction
+
+" Auto strip trailing whitespaces
+autocmd BufWritePre *.py,*.js,*.html,*.less,*.css,*.coffee call StripTrailingWhitespace()
 
 
 " Brackets autocomplite
