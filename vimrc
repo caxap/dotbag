@@ -88,6 +88,7 @@ filetype on
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 "set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%03.3b/%08O:%02.2B]
 
+let mapleader = '\'
 
 " Easy navigation for windows ()
 nmap <silent> <A-Up> :wincmd k<CR>
@@ -139,7 +140,7 @@ autocmd FileType less,sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=
 
 
 " Js/Jquery syntax support
-au BufRead,BufNewFile *.js set ft=javascript syntax=jquery
+autocmd BufRead,BufNewFile *.js set ft=javascript syntax=jquery
 
 
 " Brackets autocomplite
@@ -187,3 +188,14 @@ let g:Powerline_mode_s = 'S'
 let g:Powerline_mode_S = 'SL'
 let g:Powerline_mode_cs = 'SB'
 
+
+" Fugitive bundle settings
+nmap <Leader>gc :Gcommit -v<CR>
+nmap <Leader>ga :Gcommit -a -v<CR>  " ga -> Git commit all
+nmap <Leader>gw :Gwrite<CR>
+nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gp :Git push<CR>
+nmap <Leader>gu :Git pull<CR>  " gu -> Git update
+nmap <Leader>gd :Gdiff<CR>
+" Exit a diff by closing the diff window
+nmap <Leader>gx :wincmd h<CR>:q<CR>
