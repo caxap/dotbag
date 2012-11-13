@@ -27,13 +27,12 @@ set history=500
 set backspace=indent,eol,start                                    " More powerful backspacing
 set autoindent
 set smartindent
+"set smarttab
+set expandtab
 set tabstop=4
 set shiftwidth=4
-set expandtab
-set ts=4
-set tw=0
-"set softtabstop=4
-"set smarttab
+set softtabstop=4
+set textwidth=0
 set pastetoggle=<F2>
 set nostartofline
 set ttyfast
@@ -85,9 +84,9 @@ filetype off
 filetype on
 
 
-" Statusbar format
+" Statusbar format (but going to use PowerLine bundle)
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%03.3b/%08O:%02.2B]
+"set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%03.3b/%08O:%02.2B]
 
 
 " Easy navigation for windows ()
@@ -164,5 +163,27 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
+
 " NERDTree bundle settings
 nnoremap <F3> :NERDTreeToggle<CR>
+
+
+" Powerline bundle setting
+if has('win32') || has('win64')
+  let g:Powerline_symbols = 'compatible'
+elseif has('gui_macvim')
+    let g:Powerline_symbols = 'fancy'
+endif
+call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+
+" Abbreviate All of the Mode Names
+let g:Powerline_mode_n = 'N'
+let g:Powerline_mode_i = 'I'
+let g:Powerline_mode_R = 'R'
+let g:Powerline_mode_v = 'V'
+let g:Powerline_mode_V = 'VL'
+let g:Powerline_mode_cv = 'VB'
+let g:Powerline_mode_s = 'S'
+let g:Powerline_mode_S = 'SL'
+let g:Powerline_mode_cs = 'SB'
+
