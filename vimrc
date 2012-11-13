@@ -33,7 +33,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set textwidth=0
-set pastetoggle=<F2>
 set nostartofline
 set ttyfast
 
@@ -54,7 +53,7 @@ set showmatch                                                     " show matchin
 set showcmd                                                       " show typed command in status bar
 set title                                                         " show file in titlebar
 set laststatus=2                                                  " use 2 lines for the status bar
-"set matchtime=2                                                   " show matching bracket for 0.2 seconds
+set matchtime=0                                                   " don't delay to show matching bracket
 set matchpairs+=<:>                                               " specially for html
 set modeline
 set modelines=3
@@ -62,7 +61,6 @@ set visualbell t_vb=
 set novisualbell
 set ruler
 set hidden
-
 
 " Backup and swap files
 set backup
@@ -88,13 +86,25 @@ filetype on
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 "set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%03.3b/%08O:%02.2B]
 
+
+" Base key mappings definition
 let mapleader = '\'
+
+" Copy/paste w/o Visual mode
+set number
+set nopaste
+nnoremap <F2> :set nonumber! paste!<CR>
 
 " Easy navigation for windows ()
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
+
+" Brackets autocomplite
+"imap [ []<LEFT>
+"imap ( ()<LEFT>
+"imap { {}<LEFT>
 
 
 " When editing a file, always jump to the last cursor position
@@ -138,25 +148,13 @@ autocmd FileType coffee,javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType html,xhtml,haml,tmpl setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=0
 autocmd FileType less,sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 
-
 " Js/Jquery syntax support
 autocmd BufRead,BufNewFile *.js set ft=javascript syntax=jquery
-
-
-" Brackets autocomplite
-"imap [ []<LEFT>
-"imap ( ()<LEFT>
-"imap { {}<LEFT>
 
 
 " Syntastic bundle settings
 " Ignore line width for syntax checking
 let g:syntastic_python_checker_args='--ignore=E501'
-
-
-" Tagbar bundle settings
-let g:tagbar_usearrows = 1
-nnoremap <F4> :TagbarToggle<CR>
 
 
 " Vim-javascript bundle settings
@@ -167,6 +165,12 @@ let g:html_indent_style1 = "inc"
 
 " NERDTree bundle settings
 nnoremap <F3> :NERDTreeToggle<CR>
+
+
+" Tagbar bundle settings
+let g:tagbar_usearrows = 1
+let g:tagbar_sort = 0
+nnoremap <F4> :TagbarToggle<CR>
 
 
 " Powerline bundle setting
@@ -197,5 +201,6 @@ nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gp :Git push<CR>
 nmap <Leader>gu :Git pull<CR>  " gu -> Git update
 nmap <Leader>gd :Gdiff<CR>
+nmap <Leader>gh :Gdiff HEAD<CR>  "gh -> git diff HEAD"
 " Exit a diff by closing the diff window
 nmap <Leader>gx :wincmd h<CR>:q<CR>
