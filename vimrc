@@ -132,6 +132,17 @@ endfunction
 autocmd BufWritePre *.py,*.js,*.html,*.less,*.css,*.coffee call StripTrailingWhitespace()
 
 
+" Tabs settings for different file types
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType coffee,javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType html,xhtml,haml,tmpl setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=0
+autocmd FileType less,sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+
+
+" Js/Jquery syntax support
+au BufRead,BufNewFile *.js set ft=javascript syntax=jquery
+
+
 " Brackets autocomplite
 "imap [ []<LEFT>
 "imap ( ()<LEFT>
