@@ -13,3 +13,6 @@ Configuration pack that I use for my development environment (mostly for git, vi
 To install some additional python libs 
 
     sudo pip install -r requirements.txt
+
+###Screenshots
+![VimUbuntu](https://raw.github.com/caxap/dotbag/master/screenshots/vim-example.png)
