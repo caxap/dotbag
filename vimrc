@@ -93,13 +93,24 @@ let mapleader = '\'
 " Copy/paste w/o Visual mode
 set number
 set nopaste
-nnoremap <F2> :set nonumber! paste!<CR>
+nnoremap <silent> <F2> :set nonumber! paste!<CR>
+nnoremap <silent> <A-F2> :set paste!<CR>
 
-" Easy navigation for windows ()
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+" Easy navigation for windows
+nnoremap <silent> <A-Up> :wincmd k<CR>
+nnoremap <silent> <A-Down> :wincmd j<CR>
+nnoremap <silent> <A-Left> :wincmd h<CR>
+nnoremap <silent> <A-Right> :wincmd l<CR>
+
+" Easy navigation for tabs (like firefox)
+nnoremap <silent> <C-S-tab> :tabprevious<CR>
+nnoremap <silent> <C-tab> :tabnext<CR>
+nnoremap <silent> <C-t> :tabnew<CR>
+nnoremap <silent> <C-w> :tabclose<CR>
+" Fallback for xterm and gnome-terminal
+nnoremap <silent> <C-Left> :tabprevious<CR>
+nnoremap <silent> <C-Right> :tabnext<CR>
+
 
 " Brackets autocomplite
 "imap [ []<LEFT>
@@ -132,9 +143,9 @@ autocmd BufNewFile *.pyw call BufNewFile_PY()
 function! StripTrailingWhitespace()
   normal mZ
   %s/\s\+$//e
-  if line("'Z") != line(".")
-    echo "Stripped whitespace\n"
-  endif
+"  if line("'Z") != line(".")
+"    echo "Stripped whitespace\n"
+"  endif
   normal `Z
 endfunction
 
@@ -143,7 +154,7 @@ autocmd BufWritePre *.py,*.js,*.html,*.less,*.css,*.coffee call StripTrailingWhi
 
 
 " Tabs settings for different file types
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=0
 autocmd FileType coffee,javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType html,xhtml,haml,tmpl setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=0
 autocmd FileType less,sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
