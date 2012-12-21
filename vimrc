@@ -93,23 +93,25 @@ let mapleader = '\'
 " Copy/paste w/o Visual mode
 set number
 set nopaste
-nnoremap <silent> <F2> :set nonumber! paste!<CR>
-nnoremap <silent> <A-F2> :set paste!<CR>
+noremap <silent> <F2> :set nonumber! paste!<CR>
+noremap <silent> <A-F2> :set paste!<CR>
+"inoremap <silent> <F2> :set nonumber! paste!<CR>
+"inoremap <silent> <A-F2> :set paste!<CR>
 
 " Easy navigation for windows
-nnoremap <silent> <A-Up> :wincmd k<CR>
-nnoremap <silent> <A-Down> :wincmd j<CR>
-nnoremap <silent> <A-Left> :wincmd h<CR>
-nnoremap <silent> <A-Right> :wincmd l<CR>
+noremap <silent> <A-Up> :wincmd k<CR>
+noremap <silent> <A-Down> :wincmd j<CR>
+noremap <silent> <A-Left> :wincmd h<CR>
+noremap <silent> <A-Right> :wincmd l<CR>
 
 " Easy navigation for tabs (like firefox)
-nnoremap <silent> <C-S-tab> :tabprevious<CR>
-nnoremap <silent> <C-tab> :tabnext<CR>
-nnoremap <silent> <C-t> :tabnew<CR>
-nnoremap <silent> <C-w> :tabclose<CR>
+noremap <silent> <C-S-tab> :tabprevious<CR>
+noremap <silent> <C-tab> :tabnext<CR>
+noremap <silent> <C-t> :tabnew<CR>
+noremap <silent> <C-w> :tabclose<CR>
 " Fallback for xterm and gnome-terminal
-nnoremap <silent> <C-Left> :tabprevious<CR>
-nnoremap <silent> <C-Right> :tabnext<CR>
+noremap <silent> <C-Left> :tabprevious<CR>
+noremap <silent> <C-Right> :tabnext<CR>
 
 
 " Brackets autocomplite
