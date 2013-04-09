@@ -1,4 +1,6 @@
 
+# TODO: disabled fow a waile
+
 PS1="\u@\h:\w\007(\[\033[1;32m\]\$(git branch 2> /dev/null | fgrep '*' | sed 's/* //')\[\033[0m\])$ "
 PS2='> '
 PS4='+ '

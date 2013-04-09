@@ -16,6 +16,7 @@
     co = checkout
     df = diff
     lg = log -p
+    pu = pull --no-edit
 
 [gc]
     auto = 0
