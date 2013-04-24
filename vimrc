@@ -8,7 +8,7 @@ set cursorline "cursorcolumn
 " Theme settings
 color jellybeans
 let g:jellybeans_background_color_256 = 232
-
+"color solarized
 
 " Search operations
 set incsearch
