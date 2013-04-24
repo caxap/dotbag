@@ -220,5 +220,5 @@ nmap <Leader>gx :wincmd h<CR>:q<CR>
 
 
 " Zen Coding bundle settings
-let g:user_zen_expandabbr_key = '<C-z><C-z>'
+let g:user_zen_leader_key = '<C-y>'
 
