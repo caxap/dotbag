@@ -217,3 +217,8 @@ nmap <Leader>gd :Gdiff<CR>
 nmap <Leader>gh :Gdiff HEAD<CR>  "gh -> git diff HEAD"
 " Exit a diff by closing the diff window
 nmap <Leader>gx :wincmd h<CR>:q<CR>
+
+
+" Zen Coding bundle settings
+let g:user_zen_expandabbr_key = '<C-z><C-z>'
+
