@@ -63,8 +63,8 @@ set ruler
 set hidden
 
 " Backup and swap files
-set backup
-"set nowritebackup
+"set backup
+set nowritebackup
 "set swapfile
 set backupdir=~/.vim/backup,.
 set directory=~/.vim/backup,.

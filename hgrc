@@ -1,0 +1,98 @@
+[ui]
+username = Maxim Kamenkov <mkamenkov@gmail.com>
+editor = vim
+
+
+[diff]
+git = True
+unified = 5
+
+
+[extdiff]
+cmd.vd = vim
+opts.vd = -c 'set lines=70' -c 'set columns=240' '+next' '+execute "DirDiff" argv(0) argv(1)'
+cmd.ksdiff = /usr/local/bin/ksdiff
+opts.ksdiff = --changeset --wait --filelist
+
+[extensions]
+pager =
+transplant = 
+graphlog =
+record = 
+bookmarks = 
+rebase = 
+purge = 
+mq = 
+patchbomb =
+extdiff = 
+color = 
+parentrevspec =
+schemes = 
+progress =
+fetch =
+
+[pager]
+pager = LESS='FRSXQ' less
+quiet = True
+attend = diff,status,log,qdiff,blame,annotate,pdiff,glog
+
+[merge-tools]
+splice.executable = vim
+splice.args = -f $base $local $other $output -c 'SpliceInit'
+splice.premerge = keep
+splice.priority = 1
+
+keepthat.executable = sh
+keepthat.args = -c 'cp "$local" "$output.original" && cp "$other" "$output"'
+keepthat.premerge = True
+
+keepthis.executable = sh
+keepthis.args = -c 'cp "$other" "$output.incoming" && cp "$local" "$output"'
+keepthis.premerge = True
+
+kal.executable = /usr/local/bin/ksdiff
+kal.args = --merge --output $output --base $base -- $local $other
+
+
+[color]
+status.modified = cyan
+status.added = green
+status.removed = red
+status.deleted = yellow bold underline
+status.unknown = magenta bold underline
+status.ignored = black bold
+diff.diffline = none
+diff.extended = cyan
+diff.file_a = red
+diff.file_b = green
+diff.hunk = yellow bold
+diff.deleted = red
+diff.inserted = green
+diff.changed = white
+diff.trailingwhitespace = white_background
+log.modified = cyan
+log.added = green
+log.removed = red
+log.deleted = yellow bold underline
+log.unknown = magenta bold underline
+log.ignored = black bold
+
+
+[bookmarks]
+track.current = True
+
+
+[defaults]
+rebase = --keepbranches
+addremove = --similarity 100
+
+[alias]
+st = status -SC
+ci = commit
+br = branch
+co = checkout
+df = diff
+lg = log -p
+pu = pull --no-edit
+ql = log -p -M -u Max
+xgrep = "hg locate | xargs grep -EIi -e"

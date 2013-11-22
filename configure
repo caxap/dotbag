@@ -20,11 +20,17 @@ function configure()
     then
         touch ${DOTBAG_LOCK}
         touch ${HOME}/.bashrc
+        #touch ${HOME}/.zshrc
         echo source ${DOTBAG_DIR}/bashrc >> ${HOME}/.bashrc
+        #echo source ${DOTBAG_DIR}/zshrc >> ${HOME}/.zshrc
 
+
+        ln -s ${DOTBAG_DIR}/vimrc ${HOME}/.vimrc
+        # TODO: fix compilation of zsh config
+        ln -s ${DOTBAG_DIR}/zshrc ${HOME}/.zshrc
+        ln -s ${DOTBAG_DIR}/hgrc ${HOME}/.hgrc
         ln -s ${DOTBAG_DIR}/gitconfig ${HOME}/.gitconfig
         ln -s ${DOTBAG_DIR}/bash_git ${HOME}/.bash_git
-        ln -s ${DOTBAG_DIR}/vimrc ${HOME}/.vimrc
 
         # check existence to avoid cyclic links
         if [ ! -e ${HOME}/.vim ];
