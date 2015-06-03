@@ -95,4 +95,3 @@ df = diff
 lg = log -p
 pu = pull --no-edit
 ql = log -p -M -u Max
-xgrep = "hg locate | xargs grep -EIi -e"

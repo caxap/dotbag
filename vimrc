@@ -64,6 +64,7 @@ set hidden
 
 " Backup and swap files
 "set backup
+set nobackup
 set nowritebackup
 "set swapfile
 set backupdir=~/.vim/backup,.
@@ -108,7 +109,7 @@ noremap <silent> <A-Right> :wincmd l<CR>
 noremap <silent> <C-S-tab> :tabprevious<CR>
 noremap <silent> <C-tab> :tabnext<CR>
 noremap <silent> <C-t> :tabnew<CR>
-noremap <silent> <C-w> :tabclose<CR>
+"noremap <silent> <C-w> :tabclose<CR>
 " Fallback for xterm and gnome-terminal
 noremap <silent> <C-Left> :tabprevious<CR>
 noremap <silent> <C-Right> :tabnext<CR>
@@ -152,14 +153,16 @@ function! StripTrailingWhitespace()
 endfunction
 
 " Auto strip trailing whitespaces
-autocmd BufWritePre *.py,*.js,*.html,*.less,*.css,*.coffee call StripTrailingWhitespace()
+autocmd BufWritePre *.py,*.js,*.html,*.less,*.css,*.coffee,*.yaml,*.php call StripTrailingWhitespace()
 
 
 " Tabs settings for different file types
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=0
-autocmd FileType coffee,javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-autocmd FileType html,xhtml,haml,tmpl setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=0
-autocmd FileType less,sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType html,xhtml,haml,tmpl,htmldjango setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType yaml,yml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType less,sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 
 " Js/Jquery syntax support
 autocmd BufRead,BufNewFile *.js set ft=javascript syntax=jquery
@@ -167,7 +170,9 @@ autocmd BufRead,BufNewFile *.js set ft=javascript syntax=jquery
 
 " Syntastic bundle settings
 " Ignore line width for syntax checking
-let g:syntastic_python_checker_args='--ignore=E501'
+" http://flake8.readthedocs.org/en/latest/warnings.html#error-codes
+"let g:syntastic_python_checker_args='--ignore=C0111,I0011,I0012,W0704,W0142,W0212,W0232,W0613,W0702,R0201,E501,W0614,F403'
+let g:syntastic_python_checker_args='--ignore=E501,F403,W404'
 
 
 " Vim-javascript bundle settings
@@ -238,11 +243,11 @@ def set_breakpoint():
 
     vim.current.buffer.append(white_spaces + ipdb_breakpoint, breakpoint_line)
 
-vim.command('map <C-I> :py set_breakpoint()<cr>')
+#vim.command('map <C-I> :py set_breakpoint()<cr>')
 
 def remove_breakpoints():
     op = 'g/^.*%s.*/d' % ipdb_breakpoint
     vim.command(op)
 
-vim.command('map <C-P> :py remove_breakpoints()<cr>')
+#vim.command('map <C-P> :py remove_breakpoints()<cr>')
 EOF

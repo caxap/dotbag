@@ -9,8 +9,10 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 
-ZSH_THEME="blinks"
+#ZSH_THEME="blinks"
 #ZSH_THEME="robbyrussell"
+#ZSH_THEME="risto"
+ZSH_THEME="simple"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -49,11 +51,11 @@ plugins=(osx, git, mercurial, python, brew)
 
 source $ZSH/oh-my-zsh.sh
 
-export PYTHONPATH=.:..
+export PYTHONPATH=.:..:/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 alias la="ls -la"
 alias ll="ls -l"
-
+alias hgrep="hg locate | xargs grep -EIi -e"
 
 ### -----
 
@@ -67,5 +69,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 ### Bref dirty fix
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
-export NODE_PATH="/usr/local/lib/node_modules"
+export NODE_PATH=$NODE_PATH:/usr/local/share/npm/lib/node_modules
 export PATH="$NODE_PATH:$PATH"
+
+export CFLAGS=-Qunused-arguments
+export CPPFLAGS=-Qunused-arguments
